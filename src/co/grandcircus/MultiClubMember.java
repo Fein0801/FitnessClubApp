@@ -12,7 +12,6 @@ public class MultiClubMember extends Member {
 
     public MultiClubMember() {
 	super();
-	// TODO Auto-generated constructor stub
     }
 
     public MultiClubMember(String firstName, String lastName, String phoneNum, double fee, int memID, int points) {

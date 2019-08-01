@@ -3,7 +3,6 @@ package co.grandcircus;
 /**
  * @author Benjamin Feinstein
  * @author Christopher Ciric
- * 
  */
 
 public abstract class Member {
@@ -19,7 +18,7 @@ public abstract class Member {
 	this.lastName = "Chirpus";
 	this.phoneNum = "111-111-1111";
 	this.fee = 0.0;
-	this.memID = 0;
+	this.memID = -1;
     }
 
     public Member(String firstName, String lastName, String phoneNum, double fee, int memID) {
