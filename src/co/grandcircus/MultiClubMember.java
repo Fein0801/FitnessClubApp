@@ -8,34 +8,29 @@ package co.grandcircus;
 
 public class MultiClubMember extends Member {
 
-	private int points;
+    private int points;
 
-	public MultiClubMember() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+    public MultiClubMember() {
+	super();
+	// TODO Auto-generated constructor stub
+    }
 
-	public MultiClubMember(String name, String phoneNum, double fee, int memID) {
-		super(name, phoneNum, fee, memID);
-		// TODO Auto-generated constructor stub
-	}
+    public MultiClubMember(String firstName, String lastName, String phoneNum, double fee, int memID, int points) {
+	super(firstName, lastName, phoneNum, fee, memID);
+	this.points = points;
+    }
 
-	public MultiClubMember(String name, String phoneNum, double fee, int memID, int points) {
-		super(name, phoneNum, fee, memID);
-		this.points = points;
-	}
+    public int getPoints() {
+	return points;
+    }
 
-	public int getPoints() {
-		return points;
-	}
+    public void setPoints(int points) {
+	this.points = points;
+    }
 
-	public void setPoints(int points) {
-		this.points = points;
-	}
-
-	@Override
-	public String toString() {
-		return "MultiClubMember [points=" + points + ", " + super.toString() + "]";
-	}
+    @Override
+    public String toString() {
+	return super.toString() + "\nPoints: " + points;
+    }
 
 }

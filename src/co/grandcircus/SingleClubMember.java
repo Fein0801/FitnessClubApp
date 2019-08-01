@@ -1,40 +1,34 @@
 package co.grandcircus;
 
 /**
- * @author Benjamin Feintein
+ * @author Benjamin Feinstein
  * @author Christopher Ciric
  */
 
 public class SingleClubMember extends Member {
 
-	private String club;
+    private String club;
 
-	public SingleClubMember() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+    public SingleClubMember() {
+	this.club = "Sunrise Cafe";
+    }
 
-	public SingleClubMember(String name, String phoneNum, double fee, int memID) {
-		super(name, phoneNum, fee, memID);
-		// TODO Auto-generated constructor stub
-	}
+    public SingleClubMember(String firstName, String lastName, String phoneNum, double fee, int memID) {
+	super(firstName, lastName, phoneNum, fee, memID);
+	this.club = "Sunrise Cafe";
+    }
 
-	public SingleClubMember(String name, String phoneNum, double fee, int memID, String club) {
-		super(name, phoneNum, fee, memID);
-		this.club = club;
-	}
+    public String getClub() {
+	return club;
+    }
 
-	public String getClub() {
-		return club;
-	}
+    public void setClub(String club) {
+	this.club = club;
+    }
 
-	public void setClub(String club) {
-		this.club = club;
-	}
-
-	@Override
-	public String toString() {
-		return "SingleClubMember [club=" + club + ", " + super.toString() + "]";
-	}
+    @Override
+    public String toString() {
+	return super.toString() + "\nClub: " + club;
+    }
 
 }
