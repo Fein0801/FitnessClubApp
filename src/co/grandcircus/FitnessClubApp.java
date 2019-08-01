@@ -11,6 +11,8 @@ public class FitnessClubApp {
     public static void main(String[] args) {
 	// TODO Tasha and Rusty handle main
 
+
+
     }
 
 }
