@@ -1,5 +1,10 @@
 package co.grandcircus;
 
-public class SingleClubMember {
+/**
+ * @author Benjamin Feintein
+ * @author Christopher Ciric
+ */
+
+public class SingleClubMember extends Member {
 
 }
