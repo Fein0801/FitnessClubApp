@@ -1,7 +1,8 @@
 package co.grandcircus;
 
 /**
- * @author ????
+ * @author Benjamin Feinstein
+ * @author Christopher Ciric
  */
 public abstract class FeeCalculator {
 

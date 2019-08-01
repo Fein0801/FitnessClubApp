@@ -7,6 +7,7 @@ import java.util.Scanner;
  * @author Orestis Sinis
  * @author Natasha Langston
  * @author Benjamin Feinstein
+ * @author Christopher Ciric
  */
 
 public class FitnessClubApp {
@@ -22,7 +23,7 @@ public class FitnessClubApp {
 	boolean run = true;
 	while (run) {
 	    printOptions();
-	    int userChoice = Validator.getInt(scan, "Please choose your option (1, 2, 3 or 4...)", 1, 4);
+	    int userChoice = Validator.getInt(scan, "Please choose your option (1, 2, 3 or 4...) ", 1, 4);
 
 	    switch (userChoice) {
 	    case 1:
@@ -49,27 +50,34 @@ public class FitnessClubApp {
 	System.out.println("2: Add New Member.");
 	System.out.println("3: Remove Member.");
 	System.out.println("4: Quit.");
+	System.out.println();
     }
 
     private static void addMember(Scanner scan, ArrayList<Member> memList) {
-	System.out.println("Enter the First Name of the new Member.");
+
+	String[] locations = { "BeastMaster Midtown", "BeastMaster Troy", "BeastMaster Yorkshire",
+		"BeastMaster Farmington" };
+
+	System.out.print("Enter the First Name of the new Member. ");
 	String memFirstName = scan.nextLine();
-	System.out.println("Enter the Last Name of the new Member.");
+	System.out.print("Enter the Last Name of the new Member. ");
 	String memLastName = scan.nextLine();
-	System.out.println("Enter the Type (Multi-Gym or Single-Gym) of the new Member.");
+	System.out.print("Enter the Type (Multi-Gym or Single-Gym) of the new Member. ");
 	String memberType = scan.nextLine();
-	System.out.println("Enter a Unique ID of the new Member.  Please use exactly 7 integers.");
+	System.out.print("Enter a Unique ID of the new Member.  Please use exactly 7 integers. ");
 	int memID = scan.nextInt();
-	System.out.println(
-		"Enter a Phone Number, including Area Code, of the new Member.  Please use exactly 7 integers.");
+	System.out.print("Enter a Phone Number. "); // TODO add example
 	String memPhoneNum = scan.next(); // FIXME phone number not working
 	Member member = null;
 	if (memberType.equalsIgnoreCase("multi-gym")) {
-	    member = new MultiClubMember(memFirstName, memLastName, memPhoneNum, 0.0, memID, 50); // FIXME get rid of
+	    member = new MultiClubMember(memFirstName, memLastName, memPhoneNum, 0.0, memID, 50); // FIXME get rid of //
 												  // fee
 	} else if (memberType.equalsIgnoreCase("single-gym")) {
-	    System.out.println(""); // TODO add 4 location options
-	    member = new SingleClubMember();
+	    System.out.println("Please select one of the following 4 locations:");
+	    for (int i = 0; i < locations.length; i++) {
+		System.out.println((i + 1) + ". " + locations[i]);
+	    }
+//	    member = new SingleClubMember();
 	}
 
 	memList.add(member);

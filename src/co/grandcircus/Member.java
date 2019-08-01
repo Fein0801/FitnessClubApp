@@ -73,7 +73,6 @@ public abstract class Member {
     @Override
     public String toString() {
 	String formattedFee = String.format("$%.2f", fee);
-
 	return "First Name: " + firstName + "\nLast Name: " + lastName + "\nPhone Number: " + phoneNum + "\nFee: "
 		+ formattedFee + "\nMember ID: " + memID;
     }
