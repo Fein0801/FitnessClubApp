@@ -3,6 +3,12 @@ package co.grandcircus;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * @author Orestis Sinis
+ * @author Natasha Langston
+ * 
+ */
+
 public class FitnessClubApp {
 
 	public static void main(String[] args) {
