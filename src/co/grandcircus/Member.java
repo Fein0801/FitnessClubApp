@@ -3,11 +3,7 @@ package co.grandcircus;
 /**
  * @author Benjamin Feinstein
  * @author Christopher Ciric
- */
-
-/**
- * @author Ben
- *
+ * @author Natasha Langston
  */
 public abstract class Member {
 
@@ -25,6 +21,13 @@ public abstract class Member {
 	this.memID = -1;
     }
 
+    /**
+     * @param firstName: Accepts first name
+     * @param lastName: Accepts last name
+     * @param phoneNum: Accepts phone number
+     * @param fee: Assigns fee
+     * @param memID: Assigns member ID
+     */
     public Member(String firstName, String lastName, String phoneNum, double fee, int memID) {
 	this.firstName = firstName;
 	this.lastName = lastName;
@@ -79,7 +82,20 @@ public abstract class Member {
 	return "First Name: " + firstName + "\nLast Name: " + lastName + "\nPhone Number: " + phoneNum + "\nFee: "
 		+ formattedFee + "\nMember ID: " + memID;
     }
+//<<<<<<< Updated upstream
 
     public abstract String generateSaveDataString();
+    
+    
+    public static int generateMemID() {
+    	int max = 9999999;
+		int min = 1000000;
+		int range = max - min + 1;
+		int memID = (int) (Math.random() * range) + min;
+		{
+			return memID;
 
+		}
+    }
+//>>>>>>> Stashed changes
 }
