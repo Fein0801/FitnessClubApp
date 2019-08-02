@@ -1,12 +1,16 @@
 package co.grandcircus;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -26,6 +30,8 @@ public class FitnessClubApp {
 		Scanner scan = new Scanner(System.in);
 
 		System.out.println("Good day! Welcome to the BeastMaster's Fitness Club!\n");
+		memberList = readFromFile();
+//		System.out.println(memberList);
 
 		boolean run = true;
 		while (run) {
@@ -36,7 +42,6 @@ public class FitnessClubApp {
 				for (Member m : memberList) {
 					System.out.println(m);
 				}
-				userChoice = scan.nextInt();
 				scan.nextLine();
 				break;
 			case 2:
@@ -53,6 +58,7 @@ public class FitnessClubApp {
 				break;
 			}
 		}
+
 		System.out.println("Goodbye.");
 		writeToFile(memberList);
 	}
@@ -95,18 +101,6 @@ public class FitnessClubApp {
 			output.close();
 		}
 	}
-
-	private static void removeMember(Scanner scan, ArrayList<Member> list) {
-		System.out.println("DELETE MEMBER:");
-		int n1 = 1;
-		for (Member t : list) {
-			System.out.println(n1++ + " " + t);
-		}
-		int delete = Validator.getInt(scan, "Which member would you like to delete? ", 1, list.size());
-		list.remove(delete - 1);
-		System.out.println("MEMBER DELETED! - MAKE SURE WE GET OUR MONEY FIRST.");
-	}
-
 	// TODO Auto-generated method stub
 
 	/**
@@ -146,7 +140,6 @@ public class FitnessClubApp {
 			member = new MultiClubMember(memFirstName, memLastName, memPhoneNum, 0.0, memID, 0);
 			System.out.println();
 		} else if (memberType.equalsIgnoreCase("single-gym")) {
-//			member = new SingleClubMember(memFirstName, memLastName, memPhoneNum, 0.0, memID);
 
 			System.out.println("Please select one of the following 4 locations:");
 			try {
@@ -175,33 +168,68 @@ public class FitnessClubApp {
 				}
 			} catch (InputMismatchException e) {
 				System.out.println("Ah, Ah, Ah...  You didn't say the magic number (1-4)... Try again...");
-				// e.printStackTrace();
 			}
 
 			member = new SingleClubMember(memFirstName, memLastName, memPhoneNum, 0.0, memID, club);
 
 		}
 
-		memList.add(member);
+		
 		System.out.println(member);
 		System.out.println("Wanna shop?");
-		
+
 		char userChar = scan.next().charAt(0);
 		if (userChar == 'y') {
-			//FeeCalculator.calculateFee();
 			double accountBalance = FeeCalculator.calculateFee();
-			//FeeCalculator.apparelFee(accountBalance);
 			member.setFee(accountBalance);
-			
-			
+		} else if (userChar == 'n'){
+			member.setFee(FeeCalculator.initiationFee());
 		}
-		// scan.nextLine();
+		memList.add(member);
 	}
 
-	private static String validateInfo(String data, String regex) {
-		if (data.matches(regex)) {
-			return data;
+	private static void removeMember(Scanner scan, ArrayList<Member> list) {
+		System.out.println("DELETE MEMBER:");
+		int n1 = 1;
+		for (Member t : list) {
+			System.out.println(n1++ + " " + t);
 		}
-		return "The information you entered doesn't match the format.";
+		int delete = Validator.getInt(scan, "Which member would you like to delete? ", 1, list.size());
+		list.remove(delete - 1);
+		System.out.println("MEMBER DELETED! - MAKE SURE WE GET OUR MONEY FIRST.");
+	}
+
+	private static ArrayList<Member> readFromFile() {
+		ArrayList<Member> list = new ArrayList<Member>();
+
+		String fileName = FILE_NAME;
+		Path path = Paths.get(fileName);
+
+		File file = path.toFile();
+
+		BufferedReader br = null;
+		try {
+			br = new BufferedReader(new FileReader(file));
+			String line = br.readLine();
+			while (line != null && !line.equals("")) {
+				String[] memberInfo = line.split("/");
+				Member m = new MultiClubMember();
+				m.setFirstName(memberInfo[0]);
+				m.setLastName(memberInfo[1]);
+				m.setPhoneNum(memberInfo[2]);
+				m.setFee(Double.parseDouble(memberInfo[3]));
+				list.add(m);
+				line = br.readLine();
+			}
+			br.close();
+
+		} catch (FileNotFoundException e) {
+			System.out.println("error reading from save file");
+		} catch (IOException e) {
+			System.out.println();
+		}
+
+		return list;
+
 	}
 }

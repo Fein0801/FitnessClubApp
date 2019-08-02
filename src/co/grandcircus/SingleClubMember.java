@@ -35,7 +35,7 @@ public class SingleClubMember extends Member {
     @Override
     public String generateSaveDataString() {
 	String result = this.getFirstName() + "/" + this.getLastName() + "/" + this.getPhoneNum() + "/" + this.getFee()
-		+ "/" + club;
+		+ "/" + this.getMemID() + "/" + club;
 	return result;
     }
 

@@ -33,7 +33,7 @@ public abstract class FeeCalculator {
 				+ monthlyMembership(monthsBooked);
 		;
 		System.out.println(
-				"\nYour total Underdog Boxing Gym Pro-Shop Order is: " + String.format("%.2f", totalProShopPurchase));
+				"\nYour total BeastMaster Order is: " + String.format("%.2f", totalProShopPurchase));
 		return totalProShopPurchase;
 	}
 
@@ -82,9 +82,8 @@ public abstract class FeeCalculator {
 		return totalMonthlyMemCost;
 	}
 
-	public static double initiationFee(int intFee) {
-		intFee = 250;
-		return intFee;
+	public static double initiationFee() {
+		return 100.0;
 	}
 
 }

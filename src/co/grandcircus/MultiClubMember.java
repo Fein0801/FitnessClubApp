@@ -35,7 +35,7 @@ public class MultiClubMember extends Member {
     @Override
     public String generateSaveDataString() {
 	String result = this.getFirstName() + "/" + this.getLastName() + "/" + this.getPhoneNum() + "/" + this.getFee()
-		+ "/" + points;
+		+ "/" + this.getMemID() + "/" + points;
 	return result;
     }
 
