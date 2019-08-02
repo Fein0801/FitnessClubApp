@@ -1,8 +1,11 @@
 package co.grandcircus;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -19,94 +22,85 @@ import java.util.Scanner;
 
 public class FitnessClubApp {
 
-	private static final String FILE_NAME = "save_data.txt";
+    private static final String FILE_NAME = "save_data.txt";
 
-	public static void main(String[] args) {
-		ArrayList<Member> memberList = new ArrayList<>();
-		Scanner scan = new Scanner(System.in);
+    public static void main(String[] args) {
+	ArrayList<Member> memberList = new ArrayList<>();
+	Scanner scan = new Scanner(System.in);
 
-		System.out.println("Good day! Welcome to the BeastMaster's Fitness Club!\n");
-		memberList = readFromFile();
+	System.out.println("Good day! Welcome to the BeastMaster's Fitness Club!\n");
+	memberList = readFromFile();
 
-		boolean run = true;
-		while (run) {
-			printOptions();
-			int userChoice = Validator.getInt(scan, "Please choose your option (1, 2, 3 or 4) ", 1, 4);
-			switch (userChoice) {
-			case 1:
-				for (Member m : memberList) {
-					System.out.println(m);
-				}
-				scan.nextLine();
-				break;
-			case 2:
-				addMember(scan, memberList);
-				break;
-			case 3:
-				removeMember(scan, memberList);
-				break;
-			case 4:
-				run = false;
-				break;
-			default:
-				System.out.println("Sorry, I didn't recognize that.");
-				break;
-			}
+	boolean run = true;
+	while (run) {
+	    printOptions();
+	    int userChoice = Validator.getInt(scan, "Please choose your option (1, 2, 3 or 4) ", 1, 4);
+	    switch (userChoice) {
+	    case 1:
+		for (Member m : memberList) {
+		    System.out.println(m);
 		}
-		System.out.println("Goodbye.");
-		writeToFile(memberList);
+		scan.nextLine();
+		break;
+	    case 2:
+		addMember(scan, memberList);
+		break;
+	    case 3:
+		removeMember(scan, memberList);
+		break;
+	    case 4:
+		run = false;
+		break;
+	    default:
+		System.out.println("Sorry, I didn't recognize that.");
+		break;
+	    }
 	}
 
-	/**
-	 * Prints a user's options
-	 */
-	private static void printOptions() {
-		System.out.println("Please select the number of your menu selection below: ");
-		System.out.println("1: See Member-List: ");
-		System.out.println("2: Add New Member.");
-		System.out.println("3: Remove Member.");
-		System.out.println("4: Quit.");
-		System.out.println();
+	System.out.println("Goodbye.");
+	writeToFile(memberList);
+    }
+
+    /**
+     * Prints a user's options
+     */
+    private static void printOptions() {
+	System.out.println("Please select the number of your menu selection below: ");
+	System.out.println("1: See Member-List: ");
+	System.out.println("2: Add New Member.");
+	System.out.println("3: Remove Member.");
+	System.out.println("4: Quit.");
+	System.out.println();
+    }
+
+    /**
+     * Writes to a file
+     * 
+     * @param list: Our list of members stored
+     */
+    public static void writeToFile(ArrayList<Member> list) {
+	String fileName = FILE_NAME;
+	Path path = Paths.get(fileName);
+
+	File file = path.toFile();
+	PrintWriter output = null;
+
+	try {
+	    output = new PrintWriter(new FileOutputStream(file));
+	    if (list.isEmpty()) {
+		return;
+	    }
+	    for (Member member : list) {
+		output.println(member.generateSaveDataString());
+	    }
+	} catch (FileNotFoundException e) {
+	    System.err.println("I AM ERROR!");
+	} finally {
+	    output.close();
 	}
+    }
 
-	/**
-	 * Writes to a file
-	 * 
-	 * @param list: Our list of members stored
-	 */
-	public static void writeToFile(ArrayList<Member> list) {
-		String fileName = FILE_NAME;
-		Path path = Paths.get(fileName);
-
-		File file = path.toFile();
-		PrintWriter output = null;
-
-		try {
-			output = new PrintWriter(new FileOutputStream(file));
-			if (list.isEmpty()) {
-				return;
-			}
-			for (Member member : list) {
-				output.println(member.generateSaveDataString());
-			}
-		} catch (FileNotFoundException e) {
-			System.err.println("I AM ERROR!");
-		} finally {
-			output.close();
-		}
-	}
-
-	private static void removeMember(Scanner scan, ArrayList<Member> list) {
-		System.out.println("DELETE MEMBER:");
-		int n1 = 1;
-		for (Member t : list) {
-			System.out.println(n1++ + " " + t);
-		}
-		int delete = Validator.getInt(scan, "Which member would you like to delete? ", 1, list.size());
-		list.remove(delete - 1);
-		System.out.println("MEMBER DELETED! - MAKE SURE WE GET OUR MONEY FIRST.");
-	}
-
+//<<<<<<< Updated upstream
 	// TODO Auto-generated method stub
 
 	/**
@@ -194,49 +188,52 @@ public class FitnessClubApp {
 			
 			
 		}
-		// scan.nextLine();
-	}
+    }
 
-	private static String validateInfo(String data, String regex) {
-		if (data.matches(regex)) {
-			return data;
-		}
-		return "The information you entered doesn't match the format.";
+    private static void removeMember(Scanner scan, ArrayList<Member> list) {
+	System.out.println("DELETE MEMBER:");
+	int n1 = 1;
+	for (Member t : list) {
+	    System.out.println(n1++ + " " + t);
 	}
+	int delete = Validator.getInt(scan, "Which member would you like to delete? ", 1, list.size());
+	list.remove(delete - 1);
+	System.out.println("MEMBER DELETED! - MAKE SURE WE GET OUR MONEY FIRST.");
+    }
 
-	private static ArrayList<Member> readFromFile() {
+    private static ArrayList<Member> readFromFile() {
 	ArrayList<Member> list = new ArrayList<Member>();
-//		String fileName = FILE_NAME;
-//		Path path = Paths.get(fileName);
-//
-//		File file = path.toFile();
-//
-//		BufferedReader br = null;
-//		try {
-//			br = new BufferedReader(new FileReader(file));
-//
-//			String line = null;
-//			while (line != null) {
-//
-//				String[] memberInfo = line.split("/");
-//
-//				Member m = new MultiClubMember();
-//				m.setFirstName(memberInfo[0]);
-//				m.setLastName(memberInfo[1]);
-//				m.setPhoneNum(memberInfo[2]);
-//				m.setFee(Double.parseDouble(memberInfo[3]));
-//
-//				br.readLine();
-//			}
-//			br.close();
-//
-//		} catch (FileNotFoundException e) {
-//			System.out.println("error reading from save file");
-//		} catch (IOException e) {
-//			System.out.println();
-//		}
-//
+
+	String fileName = FILE_NAME;
+	Path path = Paths.get(fileName);
+
+	File file = path.toFile();
+
+	BufferedReader br = null;
+	try {
+	    br = new BufferedReader(new FileReader(file));
+	    String line = br.readLine();
+//	    System.out.println(line);
+	    while (line != null) {
+		String[] memberInfo = line.split(",");
+//		System.out.println(Arrays.toString(memberInfo));
+		Member m = new MultiClubMember();
+		m.setFirstName(memberInfo[0]);
+		m.setLastName(memberInfo[1]);
+		m.setPhoneNum(memberInfo[2]);
+		m.setFee(Double.parseDouble(memberInfo[3]));
+
+		line = br.readLine();
+	    }
+	    br.close();
+
+	} catch (FileNotFoundException e) {
+	    System.out.println("error reading from save file");
+	} catch (IOException e) {
+	    System.out.println();
+	}
+
 	return list;
 
-	}
+    }
 }
