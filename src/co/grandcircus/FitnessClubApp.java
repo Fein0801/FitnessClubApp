@@ -95,11 +95,12 @@ public class FitnessClubApp {
 
     }
 
+    // TODO method for removing down here
     private static void removeMember(Scanner scan, ArrayList<Member> list) {
+	// TODO Auto-generated method stub
 
     }
 
-    // TODO Auto-generated method stub
 
     /**
      * This method adds a new member to the list, based on user input.
@@ -132,7 +133,6 @@ public class FitnessClubApp {
 	    for (int i = 0; i < locations.length; i++) {
 		System.out.println((i + 1) + ". " + locations[i]);
 	    }
-//	    member = new SingleClubMember();
 	}
 
 	memList.add(member);
@@ -147,5 +147,4 @@ public class FitnessClubApp {
 	return "The information you entered doesn't match the format.";
     }
 
-    // TODO method for removing down here
 }
