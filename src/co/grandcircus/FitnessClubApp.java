@@ -100,7 +100,6 @@ public class FitnessClubApp {
     }
 
     // TODO Auto-generated method stub
-//=======/
 
     /**
      * This method adds a new member to the list, based on user input.
