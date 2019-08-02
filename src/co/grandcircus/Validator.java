@@ -5,6 +5,7 @@ import java.util.Scanner;
 // this is a concrete class that can be used over and over again
 // you can also add your own validation methods here
 public class Validator {
+
     public static String getString(Scanner sc, String prompt) {
 
 	System.out.print(prompt);

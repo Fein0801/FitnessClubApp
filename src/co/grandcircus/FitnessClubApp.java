@@ -16,14 +16,14 @@ public class FitnessClubApp {
 	ArrayList<Member> memberList = new ArrayList<>();
 	Scanner scan = new Scanner(System.in);
 
-	System.out.println("Good day! Welcome to the BeastMaster's Fitness Club\n");
+	System.out.println("Good day! Welcome to the BeastMaster's Fitness Club!\n");
 
 
 
 	boolean run = true;
 	while (run) {
 	    printOptions();
-	    int userChoice = Validator.getInt(scan, "Please choose your option (1, 2, 3 or 4...) ", 1, 4);
+	    int userChoice = Validator.getInt(scan, "Please choose your option (1, 2, 3 or 4) ", 1, 4);
 
 	    switch (userChoice) {
 	    case 1:
@@ -44,6 +44,9 @@ public class FitnessClubApp {
 	System.out.println("Alright bye, here's the members you entered :");
     }
 
+    /**
+     * Prints a user's options
+     */
     private static void printOptions() {
 	System.out.println("Please select the number of your menu selection below: ");
 	System.out.println("1: See Member-List: ");
@@ -53,6 +56,12 @@ public class FitnessClubApp {
 	System.out.println();
     }
 
+    /**
+     * This method adds a new member to the list, based on user input.
+     * 
+     * @param scan:    A Scanner object handling user input
+     * @param memList: A list of members
+     */
     private static void addMember(Scanner scan, ArrayList<Member> memList) {
 
 	String[] locations = { "BeastMaster Midtown", "BeastMaster Troy", "BeastMaster Yorkshire",
@@ -67,7 +76,7 @@ public class FitnessClubApp {
 	System.out.print("Enter a Unique ID of the new Member.  Please use exactly 7 integers. ");
 	int memID = scan.nextInt();
 	System.out.print("Enter a Phone Number. "); // TODO add example
-	String memPhoneNum = scan.next(); // FIXME phone number not working
+	String memPhoneNum = scan.next();
 	Member member = null;
 	if (memberType.equalsIgnoreCase("multi-gym")) {
 	    member = new MultiClubMember(memFirstName, memLastName, memPhoneNum, 0.0, memID, 50); // FIXME get rid of //
