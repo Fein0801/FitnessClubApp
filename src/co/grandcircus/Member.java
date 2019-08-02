@@ -91,10 +91,10 @@ public abstract class Member {
 	int min = 1000000;
 	int range = max - min + 1;
 	int memID = (int) (Math.random() * range) + min;
-	{
+	
 	    return memID;
 
-	}
+	
     }
 //>>>>>>> Stashed changes
 }

@@ -36,6 +36,7 @@ public class FitnessClubApp {
 					System.out.println(m);
 				}
 				userChoice = scan.nextInt();
+				scan.nextLine();
 				break;
 			case 2:
 				addMember(scan, memberList);
@@ -95,7 +96,14 @@ public class FitnessClubApp {
 	}
 
 	private static void removeMember(Scanner scan, ArrayList<Member> list) {
-
+		System.out.println("DELETE MEMBER:");
+		int n1 = 1;
+		for (Member t : list) {
+			System.out.println(n1++ + " " + t);
+		}
+		int delete = Validator.getInt(scan, "Which member would you like to delete? ", 1, list.size());
+		list.remove(delete - 1);
+		System.out.println("MEMBER DELETED! - MAKE SURE WE GET OUR MONEY FIRST.");
 	}
 
 	// TODO Auto-generated method stub
@@ -103,8 +111,8 @@ public class FitnessClubApp {
 	/**
 	 * This method adds a new member to the list, based on user input.
 	 * 
-	 * locale variable in addMember() will store the scanner input for 
-	 * which location they select. 
+	 * locale variable in addMember() will store the scanner input for which
+	 * location they select.
 	 * 
 	 * @param scan:    A Scanner object handling user input
 	 * @param memList: A list of members
@@ -133,12 +141,12 @@ public class FitnessClubApp {
 			System.out.println();
 		} else if (memberType.equalsIgnoreCase("single-gym")) {
 //			member = new SingleClubMember(memFirstName, memLastName, memPhoneNum, 0.0, memID);
-			
+
 			System.out.println("Please select one of the following 4 locations:");
 			for (int i = 0; i < locations.length; i++) {
 				System.out.println((i + 1) + ". " + locations[i]);
 			}
-			
+
 			locale = scan.nextInt();
 			switch (locale) {
 			case 1:
@@ -154,17 +162,18 @@ public class FitnessClubApp {
 				club = "BeastMaster Farmington";
 				break;
 
-			default: System.out.println("Please only select 1-4");
+			default:
+				System.out.println("Please only select 1-4");
 				break;
 			}
-			
+
 			member = new SingleClubMember(memFirstName, memLastName, memPhoneNum, 0.0, memID, club);
-	    
+
 		}
 
 		memList.add(member);
 		System.out.println(member);
-		scan.nextLine();
+		// scan.nextLine();
 	}
 
 	private static String validateInfo(String data, String regex) {
@@ -174,7 +183,7 @@ public class FitnessClubApp {
 		return "The information you entered doesn't match the format.";
 	}
 
-	
-	
-	// TODO method for removing down here
+	public static void removeMember(ArrayList<Member> listMem) {
+
+	}
 }
