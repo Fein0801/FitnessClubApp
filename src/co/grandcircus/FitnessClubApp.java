@@ -1,5 +1,11 @@
 package co.grandcircus;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -12,13 +18,13 @@ import java.util.Scanner;
 
 public class FitnessClubApp {
 
+    private static final String FILE_NAME = "save_data.txt";
+
     public static void main(String[] args) {
 	ArrayList<Member> memberList = new ArrayList<>();
 	Scanner scan = new Scanner(System.in);
 
 	System.out.println("Good day! Welcome to the BeastMaster's Fitness Club!\n");
-
-
 
 	boolean run = true;
 	while (run) {
@@ -35,13 +41,23 @@ public class FitnessClubApp {
 	    case 2:
 		addMember(scan, memberList);
 		break;
+	    case 3:
+		removeMember(scan, memberList);
+		break;
+	    case 4:
+		run = false;
+		break;
+	    default:
+		System.out.println("Sorry, I didn't recognize that.");
+		break;
 	    }
+
 	}
 
 	for (Member m : memberList) {
 	    System.out.println(m);
 	}
-	System.out.println("Alright bye, here's the members you entered :");
+	System.out.println("Alright bye, here's the members you entered:");
     }
 
     /**
@@ -54,6 +70,34 @@ public class FitnessClubApp {
 	System.out.println("3: Remove Member.");
 	System.out.println("4: Quit.");
 	System.out.println();
+    }
+
+    /**
+     * Writes to a file
+     * 
+     * @param list: Our list of members stored
+     */
+    public static void writeToFile(ArrayList<Member> list) {
+	String fileName = FILE_NAME;
+	Path path = Paths.get(fileName);
+
+	File file = path.toFile();
+	PrintWriter output = null;
+
+	try {
+	    output = new PrintWriter(new FileOutputStream(file));
+	    if (list.isEmpty()) {
+		return;
+	    }
+	    for (Member member : list) {
+		output.println(member.generateSaveDataString());
+	    }
+	} catch (FileNotFoundException e) {
+	    System.err.println("I AM ERROR!");
+	} finally {
+	    output.close();
+	}
+
     }
 
     /**
@@ -86,12 +130,15 @@ public class FitnessClubApp {
 	    for (int i = 0; i < locations.length; i++) {
 		System.out.println((i + 1) + ". " + locations[i]);
 	    }
-//	    member = new SingleClubMember();
 	}
 
 	memList.add(member);
 	System.out.println(member);
 	scan.nextLine();
+    }
+
+    private static void removeMember(Scanner scan, ArrayList<Member> list) {
+	// TODO Auto-generated method stub
 
     }
 

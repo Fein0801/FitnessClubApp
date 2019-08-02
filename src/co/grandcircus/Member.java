@@ -5,6 +5,10 @@ package co.grandcircus;
  * @author Christopher Ciric
  */
 
+/**
+ * @author Ben
+ *
+ */
 public abstract class Member {
 
     private String firstName;
@@ -75,5 +79,7 @@ public abstract class Member {
 	return "First Name: " + firstName + "\nLast Name: " + lastName + "\nPhone Number: " + phoneNum + "\nFee: "
 		+ formattedFee + "\nMember ID: " + memID;
     }
+
+    public abstract String generateSaveDataString();
 
 }
