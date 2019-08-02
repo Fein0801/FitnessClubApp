@@ -10,12 +10,13 @@ public class SingleClubMember extends Member {
     private String club;
 
     public SingleClubMember() {
+    	super();
 	this.club = "Sunrise Cafe";
     }
 
-    public SingleClubMember(String firstName, String lastName, String phoneNum, double fee, int memID) {
+    public SingleClubMember(String firstName, String lastName, String phoneNum, double fee, int memID, String club) {
 	super(firstName, lastName, phoneNum, fee, memID);
-	this.club = "Sunrise Cafe";
+	this.club = club;
     }
 
     public String getClub() {
