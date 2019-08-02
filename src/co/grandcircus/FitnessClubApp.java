@@ -1,11 +1,8 @@
 package co.grandcircus;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -28,6 +25,7 @@ public class FitnessClubApp {
 		Scanner scan = new Scanner(System.in);
 
 		System.out.println("Good day! Welcome to the BeastMaster's Fitness Club!\n");
+		memberList = readFromFile();
 
 		boolean run = true;
 		while (run) {
@@ -38,7 +36,6 @@ public class FitnessClubApp {
 				for (Member m : memberList) {
 					System.out.println(m);
 				}
-				userChoice = scan.nextInt();
 				scan.nextLine();
 				break;
 			case 2:
@@ -187,29 +184,38 @@ public class FitnessClubApp {
 	}
 
 	private static ArrayList<Member> readFromFile() {
-		ArrayList<Member> list = new ArrayList<Member>();
-		String fileName = FILE_NAME;
-		Path path = Paths.get(fileName);
-
-		File file = path.toFile();
-
-		BufferedReader br = null;
-		try {
-			br = new BufferedReader(new FileReader(file));
-			String line = br.readLine();
-
-			while (line != null) {
-
-			}
-			br.close();
-
-		} catch (FileNotFoundException e) {
-			System.out.println("error reading from save file");
-		} catch (IOException e) {
-			System.out.println();
-		}
-
-		return list;
+//		ArrayList<Member> list = new ArrayList<Member>();
+//		String fileName = FILE_NAME;
+//		Path path = Paths.get(fileName);
+//
+//		File file = path.toFile();
+//
+//		BufferedReader br = null;
+//		try {
+//			br = new BufferedReader(new FileReader(file));
+//
+//			String line = null;
+//			while (line != null) {
+//
+//				String[] memberInfo = line.split("/");
+//
+//				Member m = new MultiClubMember();
+//				m.setFirstName(memberInfo[0]);
+//				m.setLastName(memberInfo[1]);
+//				m.setPhoneNum(memberInfo[2]);
+//				m.setFee(Double.parseDouble(memberInfo[3]));
+//
+//				br.readLine();
+//			}
+//			br.close();
+//
+//		} catch (FileNotFoundException e) {
+//			System.out.println("error reading from save file");
+//		} catch (IOException e) {
+//			System.out.println();
+//		}
+//
+//		return list;
 
 	}
 }
