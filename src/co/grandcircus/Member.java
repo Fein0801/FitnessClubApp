@@ -82,6 +82,7 @@ public abstract class Member {
 	return "First Name: " + firstName + "\nLast Name: " + lastName + "\nPhone Number: " + phoneNum + "\nFee: "
 		+ formattedFee + "\nMember ID: " + memID;
     }
+//<<<<<<< Updated upstream
 
     public abstract String generateSaveDataString();
 
@@ -95,4 +96,5 @@ public abstract class Member {
 
 	}
     }
+//>>>>>>> Stashed changes
 }
