@@ -23,10 +23,10 @@ public abstract class Member {
 
     /**
      * @param firstName: Accepts first name
-     * @param lastName: Accepts last name
-     * @param phoneNum: Accepts phone number
-     * @param fee: Assigns fee
-     * @param memID: Assigns member ID
+     * @param lastName:  Accepts last name
+     * @param phoneNum:  Accepts phone number
+     * @param fee:       Assigns fee
+     * @param memID:     Assigns member ID
      */
     public Member(String firstName, String lastName, String phoneNum, double fee, int memID) {
 	this.firstName = firstName;
@@ -85,17 +85,16 @@ public abstract class Member {
 //<<<<<<< Updated upstream
 
     public abstract String generateSaveDataString();
-    
-    
-    public static int generateMemID() {
-    	int max = 9999999;
-		int min = 1000000;
-		int range = max - min + 1;
-		int memID = (int) (Math.random() * range) + min;
-		{
-			return memID;
 
-		}
+    public static int generateMemID() {
+	int max = 9999999;
+	int min = 1000000;
+	int range = max - min + 1;
+	int memID = (int) (Math.random() * range) + min;
+	{
+	    return memID;
+
+	}
     }
 //>>>>>>> Stashed changes
 }
