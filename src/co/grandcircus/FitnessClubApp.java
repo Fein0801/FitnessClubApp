@@ -184,7 +184,7 @@ public class FitnessClubApp {
 	}
 
 	private static ArrayList<Member> readFromFile() {
-//		ArrayList<Member> list = new ArrayList<Member>();
+	ArrayList<Member> list = new ArrayList<Member>();
 //		String fileName = FILE_NAME;
 //		Path path = Paths.get(fileName);
 //
@@ -215,7 +215,7 @@ public class FitnessClubApp {
 //			System.out.println();
 //		}
 //
-//		return list;
+	return list;
 
 	}
 }
