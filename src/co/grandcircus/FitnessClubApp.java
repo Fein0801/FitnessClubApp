@@ -1,8 +1,11 @@
 package co.grandcircus;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -183,7 +186,30 @@ public class FitnessClubApp {
 		return "The information you entered doesn't match the format.";
 	}
 
-	public static void removeMember(ArrayList<Member> listMem) {
+	private static ArrayList<Member> readFromFile() {
+		ArrayList<Member> list = new ArrayList<Member>();
+		String fileName = FILE_NAME;
+		Path path = Paths.get(fileName);
+
+		File file = path.toFile();
+
+		BufferedReader br = null;
+		try {
+			br = new BufferedReader(new FileReader(file));
+			String line = br.readLine();
+
+			while (line != null) {
+
+			}
+			br.close();
+
+		} catch (FileNotFoundException e) {
+			System.out.println("error reading from save file");
+		} catch (IOException e) {
+			System.out.println();
+		}
+
+		return list;
 
 	}
 }
