@@ -7,6 +7,7 @@ import java.io.PrintWriter;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -128,43 +129,53 @@ public class FitnessClubApp {
 		String memFirstName = scan.nextLine();
 		System.out.print("Enter the Last Name of the new Member. ");
 		String memLastName = scan.nextLine();
+		boolean valid = false;
+		String memberType = "";
 		System.out.print("Enter the Type (Multi-Gym or Single-Gym) of the new Member. ");
-		String memberType = scan.nextLine();
+		memberType = scan.nextLine();
+		while (!memberType.equalsIgnoreCase("Multi-Gym") && !memberType.equalsIgnoreCase("Single-Gym")) {
+			System.out.println("Please enter multi-gym or single-gym");
+			memberType = scan.nextLine();
+		}
 		String memPhoneNum = Validator.getStringMatchingRegex(scan, "Enter phone number as: (313-555-1212)",
 				"\\d{3}-\\d{3}-\\d{4}");
 
 		int memID = Member.generateMemID();
 		Member member = null;
 		if (memberType.equalsIgnoreCase("multi-gym")) {
-			member = new MultiClubMember(memFirstName, memLastName, memPhoneNum, 0.0, memID, 0); // FIXME get rid of //
-			// fee
+			member = new MultiClubMember(memFirstName, memLastName, memPhoneNum, 0.0, memID, 0);
 			System.out.println();
 		} else if (memberType.equalsIgnoreCase("single-gym")) {
 //			member = new SingleClubMember(memFirstName, memLastName, memPhoneNum, 0.0, memID);
 
 			System.out.println("Please select one of the following 4 locations:");
-			for (int i = 0; i < locations.length; i++) {
-				System.out.println((i + 1) + ". " + locations[i]);
-			}
+			try {
+				for (int i = 0; i < locations.length; i++) {
+					System.out.println((i + 1) + ". " + locations[i]);
+				}
 
-			locale = scan.nextInt();
-			switch (locale) {
-			case 1:
-				club = "BeastMaster Midtown";
-				break;
-			case 2:
-				club = "BeastMaster Troy";
-				break;
-			case 3:
-				club = "BeastMaster Yorkshire";
-				break;
-			case 4:
-				club = "BeastMaster Farmington";
-				break;
+				locale = scan.nextInt();
+				switch (locale) {
+				case 1:
+					club = "BeastMaster Midtown";
+					break;
+				case 2:
+					club = "BeastMaster Troy";
+					break;
+				case 3:
+					club = "BeastMaster Yorkshire";
+					break;
+				case 4:
+					club = "BeastMaster Farmington";
+					break;
 
-			default:
-				System.out.println("Please only select 1-4");
-				break;
+				default:
+					System.out.println("Please only select 1-4");
+					break;
+				}
+			} catch (InputMismatchException e) {
+				System.out.println("Ah, Ah, Ah...  You didn't say the magic number (1-4)... Try again...");
+				// e.printStackTrace();
 			}
 
 			member = new SingleClubMember(memFirstName, memLastName, memPhoneNum, 0.0, memID, club);
@@ -173,6 +184,16 @@ public class FitnessClubApp {
 
 		memList.add(member);
 		System.out.println(member);
+		System.out.println("Wanna shop?");
+		
+		char userChar = scan.next().charAt(0);
+		if (userChar == 'y') {
+			//FeeCalculator.calculateFee();
+			double accountBalance = FeeCalculator.calculateFee();
+			//FeeCalculator.apparelFee(accountBalance);
+			
+			
+		}
 		// scan.nextLine();
 	}
 

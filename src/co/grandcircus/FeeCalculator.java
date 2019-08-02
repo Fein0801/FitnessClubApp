@@ -7,22 +7,22 @@ import java.util.Scanner;
 
 public abstract class FeeCalculator {
 
-	public static void calculateFee() {
+	public static double calculateFee() {
 		Scanner scan = new Scanner(System.in);
 
 		System.out.println("How many apparel items would you like to buy?");
 		int qtyItems = scan.nextInt();
-		//scan.nextLine();
+		// scan.nextLine();
 		apparelFee(qtyItems);
 		System.out.println("");
 		System.out.println("How many group trainings would you like to attend?");
 		int gtQty = scan.nextInt();
-		//scan.nextLine();
+		// scan.nextLine();
 		groupTrainings(gtQty);
 		System.out.println("");
 		System.out.println("How many personal trainings would you like to book?");
 		int qtyPt = scan.nextInt();
-		//scan.nextLine();
+		// scan.nextLine();
 		personalTrainings(qtyPt);
 		System.out.println("");
 		System.out.println("How many months would you like to pre-pay for?");
@@ -34,13 +34,14 @@ public abstract class FeeCalculator {
 		;
 		System.out.println(
 				"\nYour total Underdog Boxing Gym Pro-Shop Order is: " + String.format("%.2f", totalProShopPurchase));
+		return totalProShopPurchase;
 	}
 
-	public static double apparelFee(int itemQty) {
+	public static double apparelFee(double itemQty) {
 		double apparelCost = 9.99;
 		double totalCost = 0.0;
 		totalCost = apparelCost *= itemQty;
-//			System.out.println("\nYour total apparel cost is: " + String.format("%.2f",totalCost));
+		System.out.println("\nYour total apparel cost is: " + totalCost);
 
 		return apparelCost;
 
