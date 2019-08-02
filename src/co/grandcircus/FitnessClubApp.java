@@ -94,4 +94,6 @@ public class FitnessClubApp {
 	scan.nextLine();
 
     }
+
+    // TODO method for removing down here
 }
