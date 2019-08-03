@@ -29,7 +29,7 @@ public class MultiClubMember extends Member {
 
     @Override
     public String toString() {
-	return super.toString() + "\nPoints: " + points;
+	return "Multi-Club Member:\n" + super.toString() + "\nPoints: " + points;
     }
 
     @Override

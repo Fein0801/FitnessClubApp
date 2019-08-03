@@ -29,7 +29,7 @@ public class SingleClubMember extends Member {
 
     @Override
     public String toString() {
-	return super.toString() + "\nClub: " + club;
+	return "Single-Club Member:\n" + super.toString() + "\nClub: " + club;
     }
 
     @Override
