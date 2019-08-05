@@ -63,7 +63,7 @@ public class FitnessClubApp {
 			}
 		}
 
-		System.out.println("Goodbye.");
+		System.out.println("Logging you out of the system!");
 		writeToFile(memberList);
 	}
 
