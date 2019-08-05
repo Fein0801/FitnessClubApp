@@ -30,7 +30,6 @@ public class FitnessClubApp {
 
 	System.out.println("Good day! Welcome to the BeastMaster's Fitness Club!\n");
 	memberList = readFromFile();
-//		System.out.println(memberList);
 
 	boolean run = true;
 	while (run) {
@@ -39,10 +38,10 @@ public class FitnessClubApp {
 	    switch (userChoice) {
 	    case 1:
 		for (Member m : memberList) {
-		    System.out.println(m);
 		    System.out.println();
+		    System.out.println(m);
 		}
-		scan.nextLine();
+		System.out.println();
 		break;
 	    case 2:
 		addMember(scan, memberList);

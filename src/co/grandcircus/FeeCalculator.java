@@ -10,23 +10,22 @@ public abstract class FeeCalculator {
     public static double calculateFee() {
 	Scanner scan = new Scanner(System.in);
 
-	System.out.println("How many apparel items would you like to buy?");
+	System.out.println("How many t-shirts would you like to buy?");
 	int qtyItems = scan.nextInt();
 	apparelFee(qtyItems);
-	System.out.println("");
+	System.out.println();
 	System.out.println("How many group trainings would you like to attend?");
 	int gtQty = scan.nextInt();
 	groupTrainings(gtQty);
-	System.out.println("");
+	System.out.println();
 	System.out.println("How many personal trainings would you like to book?");
 	int qtyPt = scan.nextInt();
-	// scan.nextLine();
 	personalTrainings(qtyPt);
-	System.out.println("");
+	System.out.println();
 	System.out.println("How many months would you like to pre-pay for?");
 	int monthsBooked = scan.nextInt();
 
-	System.out.println("");
+	System.out.println();
 	double totalProShopPurchase = groupTrainings(gtQty) + apparelFee(qtyItems) + personalTrainings(qtyPt)
 		+ monthlyMembership(monthsBooked) + initiationFee(); // Original code did not have initiation fee
 	System.out.println("\nYour total BeastMaster Order is: " + String.format("%.2f", totalProShopPurchase));

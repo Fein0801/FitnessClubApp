@@ -21,13 +21,6 @@ public abstract class Member {
 		this.memID = -1;
 	}
 
-	/**
-	 * @param firstName: Accepts first name
-	 * @param lastName:  Accepts last name
-	 * @param phoneNum:  Accepts phone number
-	 * @param fee:       Assigns fee
-	 * @param memID:     Assigns member ID
-	 */
 	public Member(String firstName, String lastName, String phoneNum, double fee, int memID) {
 		this.firstName = firstName;
 		this.lastName = lastName;
