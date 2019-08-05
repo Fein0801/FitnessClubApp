@@ -129,7 +129,7 @@ public class FitnessClubApp {
 	    System.out.println("Please enter multi-gym or single-gym");
 	    memberType = scan.nextLine();
 	}
-	String memPhoneNum = Validator.getStringMatchingRegex(scan, "Enter phone number as: (313-555-1212)",
+	String memPhoneNum = Validator.getStringMatchingRegex(scan, "Enter phone number as: (313-555-1212) ",
 		"\\d{3}-\\d{3}-\\d{4}");
 
 	int memID = Member.generateMemID();
