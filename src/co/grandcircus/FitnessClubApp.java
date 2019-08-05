@@ -28,7 +28,7 @@ public class FitnessClubApp {
 	ArrayList<Member> memberList = new ArrayList<>();
 	Scanner scan = new Scanner(System.in);
 
-	System.out.println("Good day! Welcome to the BeastMaster's Fitness Club!\n");
+	System.out.println("Good day! Welcome to the BeastMaster's Fitness Club!");
 	memberList = readFromFile();
 
 	boolean run = true;
@@ -66,6 +66,7 @@ public class FitnessClubApp {
      * Prints a user's options
      */
     private static void printOptions() {
+	System.out.println();
 	System.out.println("Please select the number of your menu selection below: ");
 	System.out.println("1: See Member-List: ");
 	System.out.println("2: Add New Member.");
@@ -100,7 +101,6 @@ public class FitnessClubApp {
 	    output.close();
 	}
     }
-    // TODO Auto-generated method stub
 
     /**
      * This method adds a new member to the list, based on user input.
@@ -122,7 +122,6 @@ public class FitnessClubApp {
 	String memFirstName = scan.nextLine();
 	System.out.print("Enter the Last Name of the new Member. ");
 	String memLastName = scan.nextLine();
-	boolean valid = false;
 	String memberType = "";
 	System.out.print("Enter the Type (Multi-Gym or Single-Gym) of the new Member. ");
 	memberType = scan.nextLine();
@@ -139,7 +138,7 @@ public class FitnessClubApp {
 	    member = new MultiClubMember(memFirstName, memLastName, memPhoneNum, 0.0, memID, 0);
 	    System.out.println();
 	} else if (memberType.equalsIgnoreCase("single-gym")) {
-
+	    System.out.println();
 	    System.out.println("Please select one of the following 4 locations:");
 	    try {
 		for (int i = 0; i < locations.length; i++) {
@@ -187,12 +186,17 @@ public class FitnessClubApp {
     }
 
     private static void removeMember(Scanner scan, ArrayList<Member> list) {
+	System.out.println();
 	System.out.println("DELETE MEMBER:");
 	int n1 = 1;
 	for (Member t : list) {
-	    System.out.println(n1++ + " " + t);
+	    System.out.println(n1++ + ". " + t + "\n");
 	}
-	int delete = Validator.getInt(scan, "Which member would you like to delete? ", 1, list.size());
+	int delete = Validator.getInt(scan, "Which member would you like to delete? ", 0, list.size());
+	if (delete == 0) {
+	    System.out.println("No members were deleted.");
+	    return;
+	}
 	list.remove(delete - 1);
 	System.out.println("MEMBER DELETED! - MAKE SURE WE GET OUR MONEY FIRST.");
     }
@@ -217,6 +221,7 @@ public class FitnessClubApp {
 		String phoneNum = memberInfo[2];
 		double fee = Double.parseDouble(memberInfo[3]);
 		int memID = Integer.parseInt(memberInfo[4]);
+
 		try {
 		    int points = Integer.parseInt(memberInfo[5]);
 		    m = new MultiClubMember(firstName, lastName, phoneNum, fee, memID, points);
