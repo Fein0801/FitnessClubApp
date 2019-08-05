@@ -35,33 +35,28 @@ public abstract class FeeCalculator {
     public static double apparelFee(double itemQty) {
 	double apparelCost = 9.99;
 	double totalCost = 0.0;
-	totalCost = apparelCost *= itemQty;
+	totalCost = apparelCost * itemQty;
 	System.out.println("\nYour total apparel cost is: " + totalCost);
-
-	return apparelCost;
-
+	return totalCost;
     }
 
     public static double groupTrainings(int gtQty) {
 	double gtCost = 19.99;
 	double totalGtCost = 0.0;
-	totalGtCost = gtCost *= gtQty;
+	totalGtCost = gtCost * gtQty;
 	System.out.println("\nYour total group training cost is: " + String.format("%.2f", totalGtCost));
-
 	return totalGtCost;
     }
 
     public static double personalTrainings(int ptQty) {
 	double ptCost = 49.99;
 	double totalPtCost = 0.0;
-	totalPtCost = ptCost *= ptQty;
+	totalPtCost = ptCost * ptQty;
 	if (ptQty >= 10) {
-
 	    totalPtCost = totalPtCost * 0.90;
 	}
 	System.out.println("\nYour total pt training cost is: " + String.format("%.2f", totalPtCost));
 	return totalPtCost;
-
     }
 
     public static double monthlyMembership(int monthNum) {
@@ -69,7 +64,6 @@ public abstract class FeeCalculator {
 	double totalMonthlyMemCost = 0.0;
 	totalMonthlyMemCost = monthlyMemCost *= monthNum;
 	if (monthNum >= 12) {
-
 	    totalMonthlyMemCost = totalMonthlyMemCost * 0.80;
 	}
 	System.out.println("\nYour total monthly membership cost is: " + String.format("%.2f", totalMonthlyMemCost));
